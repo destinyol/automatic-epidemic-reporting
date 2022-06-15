@@ -17,9 +17,15 @@
 
   注意chrome的版本与驱动版本相对应
 
-  驱动文件放到python根目录下
+  驱动文件放到python根目录下(linux需要放置在/usr/bin/中,并添加执行权限，请查阅相关资料)
 
   windows10一般为: C:\Users\asus\AppData\Local\Programs\Python\Python39
+  
+  在此，感谢[ddddocr](https://github.com/sml2h3/ddddocr)的技术支持。相关依赖下载如下：
+  ```
+  pip install ddddocr
+  //pip3 install ddddocr
+  ```
 
 # 使用说明
 ### 1.启动文件是 start.py 
@@ -52,5 +58,13 @@
 ### 5.邮件发送相关配置文件
   id_to_emails.json文件中键值对是接受邮件的学号和与之对应的邮箱
   
-  sendemail_config.json文件中键值对是发送邮件信息的邮箱的账号和密码
+  sendemail_config.json文件中键值对是发送邮件信息的邮箱的账号和授权码
+  
+  发送邮件需要一个开启[IMAP/SMTP服务](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331)的邮箱账号，当你开启这个服务时，邮件运营商会给你提供一个授权码。
+  将其填入sendamail_config.json中。
+  
+### 6.云服务器部署问题
+  在服务器上git clone本项目，填写相关json文件配置。注意，需要添加python依赖库。(pip安装)，即可运行。
+  
+  如果生成log文件失败，可在项目目录中手动添加空log目录。
   
