@@ -1,10 +1,8 @@
 import ddddocr
-
-from selenium.webdriver import Firefox
 import time
-from selenium.webdriver.firefox.options import Options
 import  os
-
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -12,6 +10,7 @@ def mainWork ():
     path1 = os.getcwd()
     path1 = path1 + '\\'
 
+    log = {}
     user_name = []
     paw = []
     user_info_txt = open(path1 + 'user_info.txt', 'r')
@@ -19,6 +18,7 @@ def mainWork ():
     line = line.strip('\n')
     while line:
         user_name.append(line)
+        log[line] = "失败"
         line = str(user_info_txt.readline())
         line = line.strip('\n')
         paw.append(line)
@@ -40,9 +40,9 @@ def mainWork ():
 
         while (True):
             if setting == 'false':
-                driver = Firefox(options=options)
+                driver = webdriver.Chrome(options=options)
             else:
-                driver = Firefox()
+                driver = webdriver.Chrome()
             driver.implicitly_wait(10)
 
             try:
@@ -62,7 +62,7 @@ def mainWork ():
             print('登陆中....')
 
             def login(x):
-                captcha_img = driver.find_element_by_id('captchaAccount')
+                driver.find_element_by_id('captchaAccount')
                 return True
 
             WebDriverWait(driver, 10).until(login, message="")
@@ -76,8 +76,6 @@ def mainWork ():
             password = driver.find_element_by_id('password')
             captcha_input = driver.find_element_by_id('captcha')
             login_button = driver.find_element_by_id('login-phone')
-
-            # 验证码识别
             ocr = ddddocr.DdddOcr()
             with open("CaptchaImg.png", 'rb') as f:
                 image = f.read()
@@ -87,7 +85,7 @@ def mainWork ():
             password.send_keys(paw[i])
             captcha_input.send_keys(res)
             time.sleep(1)
-            login_button.click()
+            driver.execute_script("arguments[0].click();", login_button)
             time.sleep(5)
             try:
                 driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div/div[2]/div[2]/form/div[1]/span')
@@ -118,7 +116,6 @@ def mainWork ():
                 paicha = driver.find_element_by_xpath(
                     '/html/body/div[2]/div/div[1]/div/form/div/div[6]/div[2]/div[2]/div/div/span/label[1]/nobr/input')
                 paicha.click()
-
                 return True
 
             WebDriverWait(driver, 10).until(findGreen, message="")
@@ -126,13 +123,14 @@ def mainWork ():
 
             queding = driver.find_element_by_id('ext-gen25')
             queding.click()
+            time.sleep(1.5)
 
         driver.close()
         driver.quit()
         if wrong_times <= 45:
             print(user_name[i] + ' 健康上报成功' + '\n')
+            log[user_name[i]] = "成功"
         else:
             print(user_name[i] + ' 健康上报失败' + '\n')
 
-if __name__ == "__main__":
-    mainWork()
+    return log
