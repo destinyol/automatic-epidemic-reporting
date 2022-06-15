@@ -26,19 +26,13 @@
 
 ### 2.软件配置文件 option.json
 
-  "browser"为"true" 显示浏览器界面
+  "browser"  为"true"：显示浏览器界面，为"false"：浏览器后台运行，不显示界面
   
-      "browser"为"false"  浏览器后台运行，不显示界面
+  "localLog"  为"open"：打开本地日志功能，为"close"：关闭本地日志功能
   
-  "localLog"为"open" 打开本地日志功能
+  "emailReminder"  为"open"：打开每日健康上报邮件提醒功能，若有学号上报成功或失败则将发送邮件给对应的学号对应的邮箱，为"close"：关闭每日健康上报邮件提醒功能
   
-  "localLog"为"close" 关闭本地日志功能
-  
-  "emailReminder"为"open" 打开每日健康上报邮件提醒功能，若有学号上报失败则将发送邮件给失败的学号对应的邮箱，成功则不发送
-  
-  "emailReminder"为"close" 关闭每日健康上报邮件提醒功能
-  
-  "emailSucessFail":"true"
+  "emailSucessFail"  为"true"：上报成功或失败都邮箱提醒，为"false":上报失败提醒，成功则不提醒
   
 ### 3.学号密码的输入 user_info.json
   支持一个或多位学生，程序将由线性结构依次进行疫情上报
