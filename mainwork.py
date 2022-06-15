@@ -11,8 +11,8 @@ def mainWork ():
     user_name = []
     paw = []
     with open("user_info.json", 'r', encoding='utf-8') as fw:
-        injson = json.load(fw)
-    for i in injson.items():
+        data = json.load(fw)
+    for i in data.items():
         user_name.append(i[0])
         paw.append(i[1])
         log[i[0]] = "失败"

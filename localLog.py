@@ -4,8 +4,8 @@ import time
 
 def saveLogAsTXT(dictData):
     with open("option.json", 'r', encoding='utf-8') as fw:
-        injson = json.load(fw)
-    if injson["localLog"] == "open":
+        option = json.load(fw)
+    if option["localLog"] == "open":
         nowTime = time.strftime("%Y-%m-%d", time.localtime())
         step = str(dictData)
         if '失败' in dictData.values():
