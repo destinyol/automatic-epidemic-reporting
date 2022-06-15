@@ -4,32 +4,20 @@ import  os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
-
+import json
 
 def mainWork ():
-    path1 = os.getcwd()
-    path1 = path1 + '\\'
-
     log = {}
     user_name = []
     paw = []
-    user_info_txt = open(path1 + 'user_info.txt', 'r')
-    line = str(user_info_txt.readline())
-    line = line.strip('\n')
-    while line:
-        user_name.append(line)
-        log[line] = "失败"
-        line = str(user_info_txt.readline())
-        line = line.strip('\n')
-        paw.append(line)
-        line = str(user_info_txt.readline())
-        line = line.strip('\n')
-
-    user_info_txt.close()
-    option_txt = open(path1 + 'option.txt', 'r')
-    setting = str(option_txt.readline())
-    setting = setting.strip('\n')
-    option_txt.close()
+    with open("user_info.json", 'r', encoding='utf-8') as fw:
+        injson = json.load(fw)
+    for i in injson.items():
+        user_name.append(i[0])
+        paw.append(i[1])
+        log[i[0]] = "失败"
+    with open("option.json", 'r', encoding='utf-8') as fw:
+        injson = json.load(fw)
 
     options = Options()
     options.add_argument('--headless')
@@ -39,7 +27,7 @@ def mainWork ():
             driver1.get('http://sso.sdwz.cn/cas/login?service=http%3A%2F%2Fmy.sdwz.cn%2Flogin')
 
         while (True):
-            if setting == 'false':
+            if injson['browser'] == 'false':
                 driver = webdriver.Chrome(options=options)
             else:
                 driver = webdriver.Chrome()
@@ -68,7 +56,7 @@ def mainWork ():
             WebDriverWait(driver, 10).until(login, message="")
             captcha_img = driver.find_element_by_id('captchaAccount')
             img = captcha_img.screenshot_as_png
-            imgfile = open(path1 + 'CaptchaImg.png', 'wb')
+            imgfile = open('CaptchaImg.png', 'wb')
             imgfile.write(img)
             imgfile.close()
             time.sleep(1.5)

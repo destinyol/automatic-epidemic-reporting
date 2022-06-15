@@ -1,13 +1,16 @@
+import json
 import time
 
 
-def saveLogAsTXT(dictDatax):
-    dictData = {'2017404032':'成功','2017404066':'失败'}
-    nowTime = time.strftime("%Y-%m-%d", time.localtime())
-    step = str(dictData)
-    if '失败' in dictData.values():
-        file = open('log/'+nowTime+'(有失败记录).txt', 'w')
-    else:
-        file = open('log/' + nowTime + '(成功).txt', 'w')
-    file.writelines(step)
-    file.close()
+def saveLogAsTXT(dictData):
+    with open("option.json", 'r', encoding='utf-8') as fw:
+        injson = json.load(fw)
+    if injson["localLog"] == "open":
+        nowTime = time.strftime("%Y-%m-%d", time.localtime())
+        step = str(dictData)
+        if '失败' in dictData.values():
+            with open("log/" + nowTime + "(有失败记录).json", 'w', encoding='utf-8') as fw:
+                json.dump(dictData, fw, indent=4, ensure_ascii=False)
+        else:
+            with open("log/" + nowTime + "(成功).json", 'w', encoding='utf-8') as fw:
+                json.dump(dictData, fw, indent=4, ensure_ascii=False)
