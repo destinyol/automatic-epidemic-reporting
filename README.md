@@ -48,3 +48,8 @@
   C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
   
   (AppData是隐藏文件夹，找不到记得打开显示隐藏文件夹)
+  
+### 5.邮件发送相关配置文件
+  id_to_emails.json文件中键值对是接受邮件的学号和与之对应的邮箱
+  sendemail_config.json文件中键值对是发送邮件信息的邮箱的账号和密码
+  
