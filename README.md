@@ -20,9 +20,9 @@
   windows10一般为: C:\Users\asus\AppData\Local\Programs\Python\Python39
 
 # 使用说明
-## 1.启动文件 start.py 
+### 1.启动文件 start.py 
 
-## 2.option.json为软件配置文件
+### 2.option.json为软件配置文件
 
   "browser"为"true" 显示浏览器界面
   
@@ -36,7 +36,7 @@
   
   "emailReminder"为"close" 关闭每日健康上报邮件提醒功能
   
-## 3.windows本地开机启动后台运行自动化配置：
+### 3.windows本地开机启动后台运行自动化配置：
   将"启动.vbs"文件创建快捷方式，并将快捷方式放至
   
   C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
