@@ -2,7 +2,6 @@ import ddddocr
 import time
 import  os
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 import json
 
@@ -19,8 +18,11 @@ def mainWork ():
     with open("option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
 
-    options = Options()
+    options = webdriver.ChromeOptions()
     options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
 
     for i in range(0, len(user_name)):
         def openWeb(driver1):

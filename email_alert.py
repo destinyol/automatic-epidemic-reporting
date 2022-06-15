@@ -12,8 +12,8 @@ from email.mime.multipart import MIMEMultipart
 def send_mail(toEmails):
     with open("sendemail_config.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
-    fromEmailAddr = injson[EmailAddress]  # 邮件发送方邮箱地址
-    password = injson[Authorization_code]  # (注意不是邮箱密码，而是为授权码)
+    fromEmailAddr = injson["EmailAddress"]  # 邮件发送方邮箱地址
+    password = injson["Authorization_code"]  # (注意不是邮箱密码，而是为授权码)
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     # 设置email信息
@@ -47,9 +47,9 @@ def if_send(d):
     need_send_success = False
     with open("option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
-    if injson[emailReminder] == "close":
+    if injson["emailReminder"] == "close":
         return
-    if injson[emailSucessFail] == "true":
+    if injson["emailSucessFail"] == "true":
         need_send_success = True
     ids = []
     dic = d

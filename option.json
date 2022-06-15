@@ -1,6 +1,6 @@
 {
     "browser":"true",       
     "localLog":"open",      
-    "emailReminder":"open",  
+    "emailReminder":"close",
     "emailSucessFail":"true"
 }
