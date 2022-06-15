@@ -23,15 +23,14 @@
 1.启动文件 start.py 
 
 2.option.json为软件配置文件
+
   "browser"为"true" 显示浏览器界面
   
   "browser"为"false"  浏览器后台运行，不显示界面
   
-  
   "localLog"为"open" 打开本地日志功能
   
   "localLog"为"close" 关闭本地日志功能
-  
   
   "emailReminder"为"open" 打开每日健康上报邮件提醒功能，若有学号上报失败则将发送邮件给失败的学号对应的邮箱，成功则不发送
   
