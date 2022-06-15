@@ -44,19 +44,25 @@ def send_mail(toEmails):
 # send_mail()
 
 def if_send(d):
+    need_send_success = False
     with open("option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
     if injson[emailReminder] == "close":
         return
+    if injson[emailSucessFail] == "true":
+        need_send_success = True
     ids = []
     dic = d
     # 遍历字典列表
 
     for key, values in dic.items():
         # print (key, values)
-        if values == '失败':
+        if need_send_success:
             ids.append(key)
-    print(ids)
+        else:
+            if values == '失败':
+                ids.append(key)
+    # print(ids)
 
     emails = []
     need_mail = False
