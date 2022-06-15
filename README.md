@@ -41,8 +41,9 @@
 ### 3.学号密码的输入 user_info.json
   支持一个或多位学生，程序将由线性结构依次进行疫情上报
   
-  数据格式:  "2017xxxxxx":"xxxxxxx",
+  数据格式:
   
+            "2017xxxxxx":"xxxxxxx",
             "1917xxxxxx":"xxxxxx"
   
 ### 4.windows本地开机启动后台运行自动化配置：
