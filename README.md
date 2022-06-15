@@ -28,7 +28,7 @@
 
   "browser"为"true" 显示浏览器界面
   
-  "browser"为"false"  浏览器后台运行，不显示界面
+           为"false"  浏览器后台运行，不显示界面
   
   "localLog"为"open" 打开本地日志功能
   
