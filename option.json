@@ -1,0 +1,5 @@
+{
+    "browser":"true",       //true是显示浏览器界面，false是关闭浏览器界面
+    "localLog":"open",      //open是打开本地日志功能，false是关闭日志
+    "emailReminder":"open"  //open是打开邮件提醒功能，false是关闭
+}
