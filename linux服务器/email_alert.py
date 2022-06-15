@@ -8,14 +8,13 @@ from email.mime.multipart import MIMEMultipart
 
 # 设置服务器所需信息
 
-def send_mail(toEmails):
+def send_mail(toEmails,path1):
     sendemail_info_txt = open(path1 + 'sendemail_config.txt', 'r')
     info1 = str(sendemail_info_txt.readline()).strip('\n')
     info2 = str(sendemail_info_txt.readline()).strip('\n')
     fromEmailAddr = info1  # 邮件发送方邮箱地址
     password = info2  # (注意不是邮箱密码，而是为授权码)
-    # toEmailAddrs = ['2468108646@qq.com', 'yuxiio.yy@gmail.com',
-    #                 'yuxiio@outlook.com']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
+    # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
@@ -45,7 +44,6 @@ def send_mail(toEmails):
 # send_mail()
 
 def if_send(d):
-    # 需要提供字典参数，即可打包模块
     ids = []
     # dic = {'2100404045': '失败', '2100404046': '成功', '2017404032': '失败'}
     dic = d
@@ -79,4 +77,4 @@ def if_send(d):
 
     emails_info_txt.close()
     print(emails)
-    send_mail(emails)
+    send_mail(emails,path1)
