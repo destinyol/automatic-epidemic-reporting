@@ -9,6 +9,8 @@
   支持一个或多个学生的疫情上报，并可以做到失败后的逐个邮箱提醒
   
   使用本程序需要安装google chrome浏览器
+  
+  -----仅供学习与交流，自行承担相应后果-----
 
 # selenium chromc驱动下载地址
   https://registry.npmmirror.com/binary.html?path=chromedriver/
