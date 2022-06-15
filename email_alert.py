@@ -1,4 +1,5 @@
 import os
+import json
 import smtplib
 # 发送字符串的邮件
 from email.mime.text import MIMEText
@@ -8,12 +9,11 @@ from email.mime.multipart import MIMEMultipart
 
 # 设置服务器所需信息
 
-def send_mail(toEmails,path1):
-    sendemail_info_txt = open(path1 + 'sendemail_config.txt', 'r')
-    info1 = str(sendemail_info_txt.readline()).strip('\n')
-    info2 = str(sendemail_info_txt.readline()).strip('\n')
-    fromEmailAddr = info1  # 邮件发送方邮箱地址
-    password = info2  # (注意不是邮箱密码，而是为授权码)
+def send_mail(toEmails):
+    with open("sendemail_config.json", 'r', encoding='utf-8') as fw:
+        injson = json.load(fw)
+    fromEmailAddr = injson[EmailAddress]  # 邮件发送方邮箱地址
+    password = injson[Authorization_code]  # (注意不是邮箱密码，而是为授权码)
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     # 设置email信息
@@ -44,8 +44,11 @@ def send_mail(toEmails,path1):
 # send_mail()
 
 def if_send(d):
+    with open("option.json", 'r', encoding='utf-8') as fw:
+        injson = json.load(fw)
+    if injson[emailReminder] == "close":
+        return
     ids = []
-    # dic = {'2100404045': '失败', '2100404046': '成功', '2017404032': '失败'}
     dic = d
     # 遍历字典列表
 
@@ -55,26 +58,16 @@ def if_send(d):
             ids.append(key)
     print(ids)
 
-    path1 = os.getcwd()
-    path1 = path1 + '/'
-
     emails = []
     need_mail = False
-    emails_info_txt = open(path1 + 'id_to_emails.txt', 'r')
-    line = str(emails_info_txt.readline())
-    line = line.strip('\n')
-    while line:
+    with open("id_to_emails.json", 'r', encoding='utf-8') as fw:
+        dic_info = json.load(fw)
+    for j in ids:
         need_mail = False
-        for i in ids:
-            if line == i:
-                need_mail = True
-        line = str(emails_info_txt.readline())
-        line = line.strip('\n')
+        if j in dic_info:
+            need_mail = True
         if need_mail:
-            emails.append(line)
-        line = str(emails_info_txt.readline())
-        line = line.strip('\n')
+            emails.append(dic_info[j])
 
-    emails_info_txt.close()
-    print(emails)
-    send_mail(emails,path1)
+    # print(emails)
+    send_mail(emails)
