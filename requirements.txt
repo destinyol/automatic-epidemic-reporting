@@ -1,0 +1,2 @@
+ddddocr==1.4.3
+selenium==4.2.0
