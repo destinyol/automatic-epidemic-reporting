@@ -68,8 +68,6 @@
 ### 6.云服务器部署问题
   在服务器上git clone本项目，填写相关json文件配置。注意，需要添加python依赖库。(pip安装)，即可运行。
   
-  ~~如果生成log文件失败，可在项目目录中手动添加空log目录。~~(目前git文件夹已提供log目录)
-  
   若想自动定时运行该py脚本，则可利用Crontab工具，
   ```
   0 8 * * * python3 /../../automatic-epidemic-reporting/start.py
