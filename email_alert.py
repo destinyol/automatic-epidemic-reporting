@@ -19,13 +19,13 @@ def send_mail_success(toEmails):
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     print('正在制作邮件...')
-    now_time = time.strftime("%Y-%m-%d", time.localtime())
+    now_time = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
     # 邮件内容设置
     message = MIMEMultipart()
     # 邮件主题
-    message['Subject'] = now_time + '健康上报提醒'
+    message['Subject'] = now_time + '健康上报提醒(成功)'
     # 发送方信息
     message['From'] = fromEmailAddr
     # 接受方信息
@@ -56,13 +56,13 @@ def send_mail_fail(toEmails):
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     print('正在制作邮件...')
-    now_time = time.strftime("%Y-%m-%d", time.localtime())
+    now_time = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
     # 邮件内容设置
     message = MIMEMultipart()
     # 邮件主题
-    message['Subject'] = now_time + '健康上报提醒'
+    message['Subject'] = now_time + '健康上报提醒(失败)'
     # 发送方信息
     message['From'] = fromEmailAddr
     # 接受方信息
