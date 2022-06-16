@@ -19,7 +19,7 @@ def send_mail_success(toEmails):
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     print('正在制作邮件...')
-    now_time = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
+    now_time = time.strftime("%Y-%m-%d  %H:%M", time.localtime())
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
     # 邮件内容设置
