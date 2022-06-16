@@ -23,8 +23,8 @@ def mainWork ():
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
 
-    try:
-        for i in range(0, len(user_name)):
+    for i in range(0, len(user_name)):
+        try:
             def openWeb(driver1):
                 driver1.get('http://sso.sdwz.cn/cas/login?service=http%3A%2F%2Fmy.sdwz.cn%2Flogin')
 
@@ -115,17 +115,15 @@ def mainWork ():
                 queding.click()
                 time.sleep(1.5)
 
-            driver.close()
-            driver.quit()
             if wrong_times <= 45:
                 print(user_name[i] + ' 健康上报成功' + '\n')
                 log[user_name[i]] = "成功"
             else:
                 print(user_name[i] + ' 健康上报失败' + '\n')
-    except:
-        pass
-    finally:
-        driver.close()
-        driver.quit()
+        except:
+            pass
+        finally:
+            driver.close()
+            driver.quit()
 
     return log
