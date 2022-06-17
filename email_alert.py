@@ -27,7 +27,7 @@ def send_mail_success(toEmails):
     # 邮件内容设置
     message = MIMEMultipart()
     # 邮件主题
-    message['Subject'] = now_time + '健康上报提醒(成功)'
+    message['Subject'] = '健康上报(成功)'+now_time
     # 发送方信息
     message['From'] = fromEmailAddr
     # 接受方信息
@@ -65,7 +65,7 @@ def send_mail_fail(toEmails):
     # 邮件内容设置
     message = MIMEMultipart()
     # 邮件主题
-    message['Subject'] = now_time + '健康上报提醒(失败)'
+    message['Subject'] = '健康上报(失败)' + now_time
     # 发送方信息
     message['From'] = fromEmailAddr
     # 接受方信息
