@@ -5,21 +5,23 @@ import time
 from email.mime.text import MIMEText
 # 需要 MIMEMultipart 类
 from email.mime.multipart import MIMEMultipart
+import os
 
 
 # 设置服务器所需信息
 
 def send_mail_success(toEmails):
+    path = os.getcwd() + '/'
     if len(toEmails) == 0:
         return
-    with open("sendemail_config.json", 'r', encoding='utf-8') as fw:
+    with open(path + "sendemail_config.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
     fromEmailAddr = injson["EmailAddress"]  # 邮件发送方邮箱地址
     password = injson["Authorization_code"]  # (注意不是邮箱密码，而是为授权码)
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     print('正在制作邮件...')
-    now_time = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
+    now_time = time.strftime("%Y-%m-%d  %H:%M", time.localtime())
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
     # 邮件内容设置
@@ -47,16 +49,17 @@ def send_mail_success(toEmails):
 
 
 def send_mail_fail(toEmails):
+    path = os.getcwd() + '/'
     if len(toEmails) == 0:
         return
-    with open("sendemail_config.json", 'r', encoding='utf-8') as fw:
+    with open(path + "sendemail_config.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
     fromEmailAddr = injson["EmailAddress"]  # 邮件发送方邮箱地址
     password = injson["Authorization_code"]  # (注意不是邮箱密码，而是为授权码)
     # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
     toEmailAddrs = toEmails
     print('正在制作邮件...')
-    now_time = time.strftime("%Y-%m-%d-%H-%M", time.localtime())
+    now_time = time.strftime("%Y-%m-%d  %H:%M", time.localtime())
     # 设置email信息
     # ---------------------------发送带附件邮件-----------------------------
     # 邮件内容设置
@@ -86,8 +89,9 @@ def send_mail_fail(toEmails):
 # send_mail()
 
 def if_send(d):
+    path = os.getcwd() + '/'
     need_send_success = False
-    with open("option.json", 'r', encoding='utf-8') as fw:
+    with open(path + "option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
     if injson["emailReminder"] == "close":
         return
@@ -113,7 +117,7 @@ def if_send(d):
     emails_fail = []
     emails_success=[]
     need_mail = False
-    with open("id_to_emails.json", 'r', encoding='utf-8') as fw:
+    with open(path + "id_to_emails.json", 'r', encoding='utf-8') as fw:
         dic_info = json.load(fw)
     for j in ids_fail:
         need_mail = False

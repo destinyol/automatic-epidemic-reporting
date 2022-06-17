@@ -3,18 +3,20 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 import json
+import os
 
 def mainWork ():
     log = {}
     user_name = []
     paw = []
-    with open("user_info.json", 'r', encoding='utf-8') as fw:
+    path = os.getcwd() + '/'
+    with open(path + "user_info.json", 'r', encoding='utf-8') as fw:
         data = json.load(fw)
     for i in data.items():
         user_name.append(i[0])
         paw.append(i[1])
         log[i[0]] = "失败"
-    with open("option.json", 'r', encoding='utf-8') as fw:
+    with open(path + "option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
 
     options = webdriver.ChromeOptions()
@@ -58,7 +60,7 @@ def mainWork ():
                 WebDriverWait(driver, 10).until(login, message="")
                 captcha_img = driver.find_element_by_id('captchaAccount')
                 img = captcha_img.screenshot_as_png
-                imgfile = open('CaptchaImg.png', 'wb')
+                imgfile = open(path + 'CaptchaImg.png', 'wb')
                 imgfile.write(img)
                 imgfile.close()
                 time.sleep(1.5)
@@ -67,7 +69,7 @@ def mainWork ():
                 captcha_input = driver.find_element_by_id('captcha')
                 login_button = driver.find_element_by_id('login-phone')
                 ocr = ddddocr.DdddOcr()
-                with open("CaptchaImg.png", 'rb') as f:
+                with open(path + "CaptchaImg.png", 'rb') as f:
                     image = f.read()
                 res = ocr.classification(image)
 
