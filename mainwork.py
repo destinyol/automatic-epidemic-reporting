@@ -9,7 +9,7 @@ def mainWork ():
     log = {}
     user_name = []
     paw = []
-    path = os.getcwd() + '/'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/'
     with open(path + "user_info.json", 'r', encoding='utf-8') as fw:
         data = json.load(fw)
     for i in data.items():

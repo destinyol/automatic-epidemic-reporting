@@ -11,7 +11,7 @@ import os
 # 设置服务器所需信息
 
 def send_mail_success(toEmails):
-    path = os.getcwd() + '/'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/'
     if len(toEmails) == 0:
         return
     with open(path + "sendemail_config.json", 'r', encoding='utf-8') as fw:
@@ -49,7 +49,7 @@ def send_mail_success(toEmails):
 
 
 def send_mail_fail(toEmails):
-    path = os.getcwd() + '/'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/'
     if len(toEmails) == 0:
         return
     with open(path + "sendemail_config.json", 'r', encoding='utf-8') as fw:
@@ -89,7 +89,7 @@ def send_mail_fail(toEmails):
 # send_mail()
 
 def if_send(d):
-    path = os.getcwd() + '/'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/'
     need_send_success = False
     with open(path + "option.json", 'r', encoding='utf-8') as fw:
         injson = json.load(fw)
