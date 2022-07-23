@@ -134,4 +134,5 @@ def if_send(d):
 
     # print(emails)
     send_mail_fail(emails_fail)
-    send_mail_success(emails_success)
+    if need_send_success:
+        send_mail_success(emails_success)
